@@ -1,6 +1,9 @@
+using IdentityServer.Contracts;
 using Microsoft.OpenApi.Models;
 using IdentityServer.Data;
+using IdentityServer.Endpoints;
 using IdentityServer.Models;
+using IdentityServer.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,11 +17,13 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Outentiek API", Version = "v1" });
 });
+builder.Services.AddScoped<IAuthManager, AuthManagerService>();
 
 var app = builder.Build();
 
 app.MapControllers();
 app.MapRazorPages();
+app.MapIdentityServer();
 
 if (app.Environment.IsDevelopment())
 {
