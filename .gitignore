@@ -1,6 +1,9 @@
 # Rider
 .idea/
 
+# VS Code
+.vs/
+
 # Build files
 src/**/*/bin/
 src/**/*/obj/
